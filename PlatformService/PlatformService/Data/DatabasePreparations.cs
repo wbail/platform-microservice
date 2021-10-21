@@ -9,19 +9,20 @@ namespace PlatformService.Data
 {
     public static class DatabasePreparations
     {
-        public static void PrepPopulation(IApplicationBuilder app, bool isProd)
+        public static void PrepPopulation(IApplicationBuilder app, bool isProductionEnvironment)
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProd);
+                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProductionEnvironment);
             }
         }
 
-        private static void SeedData(AppDbContext context, bool isProd)
+        private static void SeedData(AppDbContext context, bool isProductionEnvironment)
         {
-            if (isProd)
+            if (isProductionEnvironment)
             {
                 Console.WriteLine("--> Attempting to apply migrations...");
+
                 try
                 {
                     context.Database.Migrate();
