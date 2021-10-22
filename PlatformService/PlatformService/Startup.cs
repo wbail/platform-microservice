@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
 using System;
@@ -45,8 +46,13 @@ namespace PlatformService
             }
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IPlatformRepository, PlatformRepository>();
+            
             services.AddHttpClient<ICommandDataClient, CommandDataClient>();
+            
+            services.AddSingleton<IMessageBusClient, MessageBusClient>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
