@@ -1,0 +1,523 @@
+{
+	"info": {
+		"_postman_id": "c35ed821-24d7-447f-92e0-f547fa3ef909",
+		"name": "PlatformService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Docker Environment",
+			"item": [
+				{
+					"name": "Get All Platforms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/platform",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"platform"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Local Environment",
+			"item": [
+				{
+					"name": "Platform Service",
+					"item": [
+						{
+							"name": "Get All Platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/platform",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Testing 1\",\r\n    \"publisher\": \"Test Publisher 1\",\r\n    \"cost\": \"Test Free\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/platform",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Command Service",
+					"item": [
+						{
+							"name": "Test Inbound Connection",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Testing 1\",\r\n    \"publisher\": \"Test Publisher 1\",\r\n    \"cost\": \"Test Free\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:6000/api/c/platform",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"api",
+										"c",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Command for Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"howto\": \"Build a .net project\",\r\n    \"commandLine\": \"dotnet build\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:6000/api/c/platform/483a1f0d-eedb-4338-9fc1-01fc7ac9c797/command",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"api",
+										"c",
+										"platform",
+										"483a1f0d-eedb-4338-9fc1-01fc7ac9c797",
+										"command"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Platforms",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:6000/api/c/platform",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"api",
+										"c",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Commands for Platform",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:6000/api/c/platform/483a1f0d-eedb-4338-9fc1-01fc7ac9c797/command",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"api",
+										"c",
+										"platform",
+										"483a1f0d-eedb-4338-9fc1-01fc7ac9c797",
+										"command"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Command for Platform",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:6000/api/c/platform/483a1f0d-eedb-4338-9fc1-01fc7ac9c797/command/2a35b327-73ef-489c-ab1f-841d840d9fe5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"api",
+										"c",
+										"platform",
+										"483a1f0d-eedb-4338-9fc1-01fc7ac9c797",
+										"command",
+										"2a35b327-73ef-489c-ab1f-841d840d9fe5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "K8S",
+			"item": [
+				{
+					"name": "Node Port",
+					"item": [
+						{
+							"name": "Create Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Testing 1\",\r\n    \"publisher\": \"Test Publisher 1\",\r\n    \"cost\": \"Test Free\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:32543/api/platform",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "32543",
+									"path": [
+										"api",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:32543/api/platform",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "32543",
+									"path": [
+										"api",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nginx",
+					"item": [
+						{
+							"name": "Platform Service",
+							"item": [
+								{
+									"name": "Get All Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://acme.com/api/platform",
+											"protocol": "http",
+											"host": [
+												"acme",
+												"com"
+											],
+											"path": [
+												"api",
+												"platform"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Testing 4\",\r\n    \"publisher\": \"Test Publisher 4\",\r\n    \"cost\": \"Test Free 4\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://acme.com/api/platform",
+											"protocol": "http",
+											"host": [
+												"acme",
+												"com"
+											],
+											"path": [
+												"api",
+												"platform"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Command Service",
+							"item": [
+								{
+									"name": "Get All Platforms",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://acme.com/api/c/platform",
+											"protocol": "http",
+											"host": [
+												"acme",
+												"com"
+											],
+											"path": [
+												"api",
+												"c",
+												"platform"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Command for Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"howto\": \"Build a .net project\",\r\n    \"commandLine\": \"dotnet build\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://acme.com/api/c/platform/483a1f0d-eedb-4338-9fc1-01fc7ac9c797/command",
+											"protocol": "http",
+											"host": [
+												"acme",
+												"com"
+											],
+											"path": [
+												"api",
+												"c",
+												"platform",
+												"483a1f0d-eedb-4338-9fc1-01fc7ac9c797",
+												"command"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Commands for Platform",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://acme.com/api/c/platform/483a1f0d-eedb-4338-9fc1-01fc7ac9c797/command",
+											"protocol": "http",
+											"host": [
+												"acme",
+												"com"
+											],
+											"path": [
+												"api",
+												"c",
+												"platform",
+												"483a1f0d-eedb-4338-9fc1-01fc7ac9c797",
+												"command"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Command for Platform",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://acme.com/api/c/platform/483a1f0d-eedb-4338-9fc1-01fc7ac9c797/command/2a35b327-73ef-489c-ab1f-841d840d9fe5",
+											"protocol": "http",
+											"host": [
+												"acme",
+												"com"
+											],
+											"path": [
+												"api",
+												"c",
+												"platform",
+												"483a1f0d-eedb-4338-9fc1-01fc7ac9c797",
+												"command",
+												"2a35b327-73ef-489c-ab1f-841d840d9fe5"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
