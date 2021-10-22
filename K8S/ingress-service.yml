@@ -14,13 +14,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: platforms-clusterip-srv
+                name: platform-clusterip-srv
                 port:
                   number: 80
           - path: /api/c/platform
             pathType: Prefix
             backend:
               service:
-                name: commands-clusterip-srv
+                name: command-clusterip-srv
                 port:
                   number: 80
