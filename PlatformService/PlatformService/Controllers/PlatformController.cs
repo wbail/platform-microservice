@@ -56,7 +56,7 @@ namespace PlatformService.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<PlatformReadDto>> CreatePlatform([FromBody] PlatformCreateDto platformCreateDto)
+        public ActionResult<PlatformReadDto> CreatePlatform([FromBody] PlatformCreateDto platformCreateDto)
         {
             Console.WriteLine("------> Creating a platform");
 
@@ -68,6 +68,16 @@ namespace PlatformService.Controllers
             var platformReadDto = _mapper.Map<PlatformReadDto>(platform);
 
             // Send sync message
+            SendPlatformToCommandViaHttp(platformReadDto);
+
+            // Send async message
+            SendPlatformToCommandViaMessageBus(platformReadDto);
+
+            return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
+        }
+
+        private async void SendPlatformToCommandViaHttp(PlatformReadDto platformReadDto)
+        {
             try
             {
                 await _commandDataClient.SendPlatformToCommand(platformReadDto);
@@ -76,8 +86,10 @@ namespace PlatformService.Controllers
             {
                 Console.WriteLine($"Could not send syncronously: {ex.Message}");
             }
+        }
 
-            // Send async message
+        private void SendPlatformToCommandViaMessageBus(PlatformReadDto platformReadDto)
+        {
             try
             {
                 var platfromPublishedDto = _mapper.Map<PlatformPublishedDto>(platformReadDto);
@@ -90,8 +102,6 @@ namespace PlatformService.Controllers
 
                 Console.WriteLine($"Could not send asyncronously: {ex.Message}");
             }
-
-            return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
         }
     }
 }
