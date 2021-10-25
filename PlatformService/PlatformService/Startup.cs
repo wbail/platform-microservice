@@ -1,19 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PlatformService.AsyncDataServices;
 using PlatformService.Data;
+using PlatformService.SyncDataServices.Grpc;
 using PlatformService.SyncDataServices.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace PlatformService
 {
@@ -52,6 +50,8 @@ namespace PlatformService
             services.AddHttpClient<ICommandDataClient, CommandDataClient>();
             
             services.AddSingleton<IMessageBusClient, MessageBusClient>();
+
+            services.AddGrpc();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -77,6 +77,12 @@ namespace PlatformService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<GrpcPlatformService>();
+
+                endpoints.MapGet("/protos/platform.proto", async context =>
+                {
+                    await context.Response.WriteAsync(File.ReadAllText("Protos/platform.proto"));
+                });
             });
 
             DatabasePreparations.PrepPopulation(app, _env.IsProduction());
