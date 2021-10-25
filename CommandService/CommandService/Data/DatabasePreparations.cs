@@ -1,10 +1,9 @@
 ﻿using CommandService.Models;
+using CommandService.SyncDataServices.Grpc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CommandService.Data
 {
@@ -14,11 +13,11 @@ namespace CommandService.Data
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                //var grpcClient = serviceScope.ServiceProvider.GetService<IPlatformDataClient>();
+                var grpcClient = serviceScope.ServiceProvider.GetService<IPlatformDataClient>();
 
-                //var platforms = grpcClient.ReturnAllPlatforms();
+                var platforms = grpcClient.ReturnAllPlatforms();
 
-                //SeedData(serviceScope.ServiceProvider.GetService<ICommandRepository>(), platforms);
+                SeedData(serviceScope.ServiceProvider.GetService<ICommandRepository>(), platforms);
             }
         }
 
